@@ -1,0 +1,7 @@
+mixin AreStringsEqual--Handlebars(firstString, secondString)
+
+  | {{#areStringsEqual #{ firstString } "#{ secondString }"}}
+
+  block
+
+  | {{/areStringsEqual}}

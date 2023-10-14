@@ -1,0 +1,47 @@
+mixin Each--Handlebars(polymorphicParameter)
+
+  if typeof polymorphicParameter === "string"
+
+    | {{#each #{ polymorphicParameter }}}
+
+  else if typeof polymorphicParameter === "object" && polymorphicParameter !== null
+
+    -
+
+      const {
+
+        /** @type { string } */
+        iterableVariableName,
+
+        /** @type { string | undefined } */
+        iterableContextVariableName,
+
+        /** @type { string | undefined } */
+        indexVariableName
+
+      } = polymorphicParameter;
+
+    if iterableContextVariableName && indexVariableName
+
+      | {{#each #{ iterableVariableName } as |#{ iterableContextVariableName } #{ indexVariableName }|}}
+
+    else if iterableContextVariableName
+
+      | {{#each #{ iterableVariableName } as |#{ iterableContextVariableName }|}}
+
+    else
+
+      -
+        throw new Error(
+          "`Each--Handlebars`, invalid parameter type. " +
+          "If object-type value has been specified it must have at least `iterableVariableName` non-empty string property. " +
+          "Also, if `indexVariableName` has been specified, the `iterableContextVariableName` must be specified too."
+        );
+
+  else
+
+    - throw new Error("\"Each--Handlebars\", invalid parameter type. Must be either string of non-null object.");
+
+  block
+
+  | {{/each}}

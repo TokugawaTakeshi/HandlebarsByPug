@@ -1,0 +1,23 @@
+mixin With--Handlebars(polymorphicParameter)
+
+  if typeof polymorphicParameter === "string"
+
+    | {{#with #{ polymorphicParameter }}}
+
+    block
+
+    | {{/with }}
+
+  else if typeof polymorphicParameter === "object" && polymorphicParameter !== null
+
+    if polymorphicParameter.mustSurroundByWithHelperIf
+
+      | {{#with #{ polymorphicParameter.parameterName }}}
+
+      block
+
+      | {{/with }}
+
+    else
+
+      block

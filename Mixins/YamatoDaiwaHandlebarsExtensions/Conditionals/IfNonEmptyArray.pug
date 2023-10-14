@@ -1,0 +1,7 @@
+mixin IfNonEmptyArray--Handlebars(targetValue)
+
+  | {{#isNonEmptyArray #{ targetValue }}}
+
+  block
+
+  | {{/isNonEmptyArray}}

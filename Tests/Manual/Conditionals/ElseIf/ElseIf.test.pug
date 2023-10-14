@@ -1,0 +1,18 @@
+include ../../../../Mixins.pug
+
+
++If--Handlebars("conditionA")
+
+  | Condition A is true
+
+  +ElseIf--Handlebars("conditionB")
+
+    | Condition B is true
+
+    +ElseIf--Handlebars("conditionC")
+
+      | Condition C is true
+
+      +Else--Handlebars
+
+        | No condition matched
